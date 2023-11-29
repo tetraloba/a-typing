@@ -16,7 +16,41 @@ function callback_game(mutationsList, observer) {
         const text2enter = sentenceText.children[0].children[1];
         if (text2enter && text2enter.textContent.length != char_left_num) { // 文字入力以外による画面更新時は実行しない
             char_left_num = text2enter.textContent.length;
-            console.log(text2enter.textContent[0]); // ここがキーイベント送信。
+            const keyCode = text2enter.textContent.charCodeAt(0);
+            console.log(keyCode, String.fromCharCode(keyCode));
+            let keyEvent = new KeyboardEvent("keypress", {key: String.fromCharCode(keyCode)});
+            // let keyEvent = new KeyboardEvent( "keydown", { keyCode: 40, altKey: false, shiftKey: false, key: "ArrowDown" });
+            document.dispatchEvent(keyEvent);
+            document.getElementById('pp_full_res').dispatchEvent(keyEvent);
+            typing_content.dispatchEvent(keyEvent);
+            typing_content.contentWindow.dispatchEvent(keyEvent);
+            typing_content.contentWindow.document.dispatchEvent(keyEvent);
+            typing_content.contentWindow.document.body.dispatchEvent(keyEvent);
+            app.dispatchEvent(keyEvent);
+            // document:focus();
+            // app:focus();
+            // document.activeElement.dispatchEvent(keyEvent);
+            // document.activeElement. :focus();
+            // console.log(document.activeElement);
+            // console.log(typing_content.contentWindow.document.activeElement);
+            // let pp_full_res = document.getElementById('pp_full_res');
+            // pp_full_res:focus();
+            // typing_content:focus();
+
+            // let typing_content_body = typing_content.contentWindow.document.body;
+            // typing_content_body:focus();
+            // typing_content_body.dispatchEvent(keyEvent);
+
+            // document.body:focus();
+
+            // typing_content_active = typing_content.contentWindow.document.activeElement;
+            // console.log(typing_content_active);
+            // typing_content_active:focus();
+            // activeElement = document.activeElement;
+            // console.log(activeElement)
+            // activeElement:focus();
+            // document.dispatchEvent(new KeyboardEvent("keydown", ))
+            
         }
     }
 }
